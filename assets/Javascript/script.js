@@ -5,10 +5,8 @@ var animals = ["Cat", "Dog", "Mouse"];
 function displayAnimal() {
 
   var animal = $(this).attr("data-name");
-  var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
-        animal + "&api_key=BkaUZZWcFij6J7AoQj3WtPb1R2p9O6V9&limit=10";
+  var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + animal + "&api_key=BkaUZZWcFij6J7AoQj3WtPb1R2p9O6V9&limit=10";
 
-  // Creating an AJAX call for the specific movie button being clicked
   $.ajax({
     url: queryURL,
     method: "GET"
@@ -19,7 +17,7 @@ function displayAnimal() {
 
     for (var i = 0; i < results.length; i++) {
         
-        var animalDiv = $("<div>");
+        var animalDiv = $("<div>").addClass("limitWidth");
         var p = $("<p>").text("Rating: " + results[i].rating);
         var animalImage = $("<img>");
         animalImage.attr("src", results[i].images.fixed_height.url);
@@ -28,7 +26,7 @@ function displayAnimal() {
         $("#animals-view").prepend(animalDiv);
 
     }
-});
+  });
 }
 
 function renderButtons() {
@@ -36,8 +34,9 @@ function renderButtons() {
   for (var i = 0; i < animals.length; i++) {
 
     var a = $("<button>");
-    a.addClass("animal-btn");
+    a.addClass("animal-btn btn btn-dark m-1");
     a.attr("data-name", animals[i]);
+    a.attr("type", "button");
     a.text(animals[i]);
     $("#buttons-view").append(a);
   }
