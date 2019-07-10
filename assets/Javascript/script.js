@@ -19,7 +19,7 @@ function displayAnimal() {
         
         var animalDiv = $("<div>").addClass("limitWidth");
         var p = $("<p>").text("Rating: " + results[i].rating);
-        var animalImage = $("<img>");
+        var animalImage = $("<img>").addClass("rounded");
         animalImage.attr("src", results[i].images.fixed_height.url);
         animalDiv.append(p);
         animalDiv.append(animalImage);
