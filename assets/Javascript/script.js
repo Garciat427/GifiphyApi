@@ -14,19 +14,39 @@ function displayAnimal() {
     var results = response.data;
     //Clears Div
     $("#animals-view").empty();
+    console.log(response);
 
     for (var i = 0; i < results.length; i++) {
         
         var animalDiv = $("<div>").addClass("limitWidth");
         var p = $("<p>").text("Rating: " + results[i].rating);
         var animalImage = $("<img>").addClass("rounded");
-        animalImage.attr("src", results[i].images.fixed_height.url);
+        
+        //store data states
+        animalImage.addClass("animal-gif")
+        animalImage.attr("data-gif", results[i].images.fixed_height.url);
+        animalImage.attr("data-still", results[i].images.fixed_height_still.url);
+        animalImage.attr("data-still-state", true);
+        animalImage.attr("src", results[i].images.fixed_height_still.url);
+        
         animalDiv.append(p);
         animalDiv.append(animalImage);
         $("#animals-view").prepend(animalDiv);
 
     }
   });
+}
+
+function changeState() {
+  clickedImg = $(this);
+  if (clickedImg.attr("data-still-state") === "true"){
+    clickedImg.attr("data-still-state" , false);
+    clickedImg.attr("src", clickedImg.attr("data-gif"));
+  }
+  else{
+    clickedImg.attr("data-still-state" , true);
+    clickedImg.attr("src", clickedImg.attr("data-still"));
+  }
 }
 
 function renderButtons() {
@@ -42,6 +62,7 @@ function renderButtons() {
   }
 }
 
+
 $("#add-animal").on("click", function(event) {
   event.preventDefault();
   var animal = $("#animal-input").val().trim();
@@ -50,6 +71,7 @@ $("#add-animal").on("click", function(event) {
 });
 
 $(document).on("click", ".animal-btn", displayAnimal);
+$(document).on("click", ".animal-gif", changeState);
 
 // Calling the renderButtons function to display the intial buttons
 renderButtons();
