@@ -1,5 +1,5 @@
 // Initial array of movies
-var animals = ["Cat", "Dog", "Mouse"];
+var animals = ["Cat", "Dog", "Mouse", "Bison", "Dolphin", "Eagle" , "Rabbit", "Goldfish", "Bird" , "Ferret", "Turtle", "Hedgehog", "Gerbil", "Goat" , "Chicken", "Skunk", "Pig"];
 
 // displayMovieInfo function re-renders the HTML to display the appropriate content
 function displayAnimal() {
